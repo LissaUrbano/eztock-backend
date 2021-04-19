@@ -2,19 +2,20 @@ package com.facens.ezstock.entities.dto;
 
 import java.time.LocalDate;
 
+import com.facens.ezstock.entities.Produto;
 import com.facens.ezstock.entities.ProdutoEstoque;
 
 public class ProdutoEstoqueDTO {
 
     private Long id;
-    private Long idProduto;
+    private Produto idProduto;
     private Integer quantidade;
     private LocalDate dataEstoque;
 
     public ProdutoEstoqueDTO() {
     }
 
-    public ProdutoEstoqueDTO(Long id, Long idProduto, Integer quantidade, LocalDate dataEstoque) {
+    public ProdutoEstoqueDTO(Long id, Produto idProduto, Integer quantidade, LocalDate dataEstoque) {
         this.id = id;
         this.idProduto = idProduto;
         this.quantidade = quantidade;
@@ -36,11 +37,11 @@ public class ProdutoEstoqueDTO {
         this.id = id;
     }
 
-    public Long getIdProduto() {
+    public Produto getIdProduto() {
         return idProduto;
     }
 
-    public void setIdProduto(Long idProduto) {
+    public void setIdProduto(Produto idProduto) {
         this.idProduto = idProduto;
     }
 

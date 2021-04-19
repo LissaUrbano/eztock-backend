@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import com.facens.ezstock.entities.dto.AtributoProdutoDto;
 
@@ -18,6 +20,8 @@ public class AtributoProduto implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+	@ManyToOne
+	@JoinColumn(name = "id_atributo", nullable = false)
     private Atributo atributo; //chave estrangeira 
     private String valor;
 

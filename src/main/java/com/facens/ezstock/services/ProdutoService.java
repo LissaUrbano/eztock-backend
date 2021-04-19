@@ -72,15 +72,15 @@ public class ProdutoService {
         Produto produto = op.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, msgNotFound));
         return new ProdutoDto(produto);
     }
-
+    
     public List<ProdutoDto> buscarPorCodigo(String codigo) {
-		List<Produto> produtosEncontrados = produtoRepository.findByCodigoContainingIgnoreCase(codigo);
+		List<Produto> produtosEncontrados = produtoRepository.findByCodigoProdutoContainingIgnoreCase(codigo);
         if (produtosEncontrados == null) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, msgNotFound);
 		}
         return listProdutoDto(produtosEncontrados);
 	}
-
+    
     public List<ProdutoDto> buscarPorNome(String nome) {
 		List<Produto> produtosEncontrados = produtoRepository.findByNomeContainingIgnoreCase(nome);
         if (produtosEncontrados == null) {
@@ -113,6 +113,7 @@ public class ProdutoService {
         return listProdutoDto(produtosEncontrados);
     }
 
+    /*
 	public List<ProdutoDto> buscarPorAtributoValor(String atributoProduto, String valor) {
         List<Produto> produtosEncontrados = produtoRepository.findByAtributoProdutoContainingIgnoreCase(atributoProduto, valor); 
         if (produtosEncontrados == null) {
@@ -120,6 +121,7 @@ public class ProdutoService {
 		}
         return listProdutoDto(produtosEncontrados);
 	}
+    */
 
     private List<ProdutoDto> listProdutoDto(List<Produto> produtos){
         List<ProdutoDto> listProdutoDto = new ArrayList<>();

@@ -11,10 +11,10 @@ import org.springframework.stereotype.Repository;
 public interface ProdutoRepository extends JpaRepository<Produto, Long>{
     
 	List<Produto> findByNomeContainingIgnoreCase(String nome);
-	List<Produto> findByCodigoContainingIgnoreCase(String codigo);
+	List<Produto> findByCodigoProdutoContainingIgnoreCase(String codigo);
 	List<Produto> findAllByOrderByNomeAsc();
 	List<Produto> findAllByOrderByNomeDesc();
 	List<Produto> findByCategoriaContainingIgnoreCase(String categoria);
-    List<Produto> findByAtributoProdutoContainingIgnoreCase(String atributoProduto, String valor);
+    //List<Produto> findByAtributoProdutoContainingIgnoreCase(String atributoProduto, String valor);
 
 }

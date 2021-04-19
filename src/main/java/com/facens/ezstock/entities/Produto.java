@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToMany;
 
 import com.facens.ezstock.entities.dto.ProdutoDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -26,7 +26,7 @@ public class Produto implements Serializable{
     private Double preco;
 
     @JsonIgnore
-	@OneToOne
+	@ManyToMany
     private List<AtributoProduto> atributoProduto;//list chave estrangeira
 
     public Produto() {

@@ -7,19 +7,25 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import com.facens.ezstock.entities.dto.ProdutoVendaDTO;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class ProdutoVenda implements Serializable {
-
+    
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long idProduto;//chave estrangeira
+
+    @ManyToOne
+    private Produto idProduto;//chave estrangeira
     private Integer quantidade;
+
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataVenda;
 
     public ProdutoVenda() {
@@ -39,11 +45,11 @@ public class ProdutoVenda implements Serializable {
         this.id = id;
     }
 
-    public Long getIdProduto() {
+    public Produto getIdProduto() {
         return idProduto;
     }
 
-    public void setIdProduto(Long idProduto) {
+    public void setIdProduto(Produto idProduto) {
         this.idProduto = idProduto;
     }
 
@@ -87,4 +93,5 @@ public class ProdutoVenda implements Serializable {
             return false;
         return true;
     }
+    
 }

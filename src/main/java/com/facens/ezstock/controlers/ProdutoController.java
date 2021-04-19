@@ -93,10 +93,12 @@ public class ProdutoController {
         return ResponseEntity.ok().body(listDto);
     }
 
+    /*
     //BUSCA PRODUTOS POR ATRIBUTO
     @GetMapping("/atributo/{nome}={valor}")
     public ResponseEntity<List<ProdutoDto>> buscarPorAtributoValor(@PathVariable String nome, String valor){
         List<ProdutoDto> listDto = produtoService.buscarPorAtributoValor(nome, valor);
         return ResponseEntity.ok().body(listDto);
     }
+    */
 }
