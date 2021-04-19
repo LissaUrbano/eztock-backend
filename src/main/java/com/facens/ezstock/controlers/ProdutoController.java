@@ -3,9 +3,7 @@ package com.facens.ezstock.controlers;
 import java.net.URI;
 import java.util.List;
 
-import com.facens.ezstock.entities.Produto;
 import com.facens.ezstock.entities.dto.ProdutoDto;
-import com.facens.ezstock.repositories.ProdutoRepository;
 import com.facens.ezstock.services.ProdutoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +25,6 @@ public class ProdutoController {
     @Autowired
 	private ProdutoService produtoService;
 
-    @Autowired
-	private ProdutoRepository produtoRepository;
-
     @PostMapping
 	public ResponseEntity<ProdutoDto> criar(@RequestBody ProdutoDto produtoDto){
 		ProdutoDto dto = produtoService.criar(produtoDto); 
@@ -50,9 +45,10 @@ public class ProdutoController {
 	}
 
     //BUSCA TODOS PRODUTOAS CADASTRADOS
-	@GetMapping
-	public List<Produto> listar(){ //trocar para DTO
-		return produtoRepository.findAll();
+    @GetMapping
+	public ResponseEntity<List<ProdutoDto>> listar(){ 
+        List<ProdutoDto> listDto = produtoService.buscarTodos();
+        return ResponseEntity.ok().body(listDto);
 	}
 
     //BUSCA POR ID

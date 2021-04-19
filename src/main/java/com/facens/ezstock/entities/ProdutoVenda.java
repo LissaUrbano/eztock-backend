@@ -1,33 +1,34 @@
 package com.facens.ezstock.entities;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import com.facens.ezstock.entities.dto.AtributoProdutoDto;
+import com.facens.ezstock.entities.dto.ProdutoVendaDTO;
 
 @Entity
-public class AtributoProduto implements Serializable {
+public class ProdutoVenda implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private Long idProduto;//chave estrangeira
+    private Integer quantidade;
+    private LocalDate dataVenda;
 
-    private Atributo atributo; //chave estrangeira 
-    private String valor;
-
-    public AtributoProduto() {
+    public ProdutoVenda() {
     }
 
-    public AtributoProduto(AtributoProdutoDto atributoProdutoDto) {
-        this.id = atributoProdutoDto.getId();
-        this.atributo = atributoProdutoDto.getAtributo();
-        this.valor = atributoProdutoDto.getValor();
+    public ProdutoVenda(ProdutoVendaDTO produtoVendaDto) {
+        setIdProduto(produtoVendaDto.getIdProduto());
+        setQuantidade(produtoVendaDto.getQuantidade());
+        setDataVenda(LocalDate.now());
     }
 
     public Long getId() {
@@ -38,20 +39,28 @@ public class AtributoProduto implements Serializable {
         this.id = id;
     }
 
-    public Atributo getAtributo() {
-        return atributo;
+    public Long getIdProduto() {
+        return idProduto;
     }
 
-    public void setAtributo(Atributo atributo) {
-        this.atributo = atributo;
+    public void setIdProduto(Long idProduto) {
+        this.idProduto = idProduto;
     }
 
-    public String getValor() {
-        return valor;
+    public Integer getQuantidade() {
+        return quantidade;
     }
 
-    public void setValor(String valor) {
-        this.valor = valor;
+    public void setQuantidade(Integer quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    public LocalDate getDataVenda() {
+        return dataVenda;
+    }
+
+    public void setDataVenda(LocalDate dataVenda) {
+        this.dataVenda = dataVenda;
     }
 
     @Override
@@ -70,7 +79,7 @@ public class AtributoProduto implements Serializable {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        AtributoProduto other = (AtributoProduto) obj;
+        ProdutoVenda other = (ProdutoVenda) obj;
         if (id == null) {
             if (other.id != null)
                 return false;
@@ -78,7 +87,4 @@ public class AtributoProduto implements Serializable {
             return false;
         return true;
     }
-
-    
-
 }

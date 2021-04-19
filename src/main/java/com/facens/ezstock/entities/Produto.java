@@ -27,7 +27,7 @@ public class Produto implements Serializable{
 
     @JsonIgnore
 	@OneToOne
-    private List<AtributoProduto> atributoProduto;
+    private List<AtributoProduto> atributoProduto;//list chave estrangeira
 
     public Produto() {
     }

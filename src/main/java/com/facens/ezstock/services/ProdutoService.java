@@ -59,6 +59,14 @@ public class ProdutoService {
         }
     }
 
+    public List<ProdutoDto> buscarTodos() {
+		List<Produto> produtosEncontrados = produtoRepository.findAll();
+        if (produtosEncontrados.isEmpty()) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, msgNotFound);
+		}
+        return listProdutoDto(produtosEncontrados);
+	}
+
     public ProdutoDto buscarPorId(Long id) {
         Optional<Produto> op = produtoRepository.findById(id);
         Produto produto = op.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, msgNotFound));
@@ -81,7 +89,7 @@ public class ProdutoService {
         return listProdutoDto(produtosEncontrados);
 	}
 	
-	public List<ProdutoDto> listarNomeCrescente() { //arrumar retornar lista Produtodto
+	public List<ProdutoDto> listarNomeCrescente() {
 		List<Produto> produtosEncontrados = produtoRepository.findAllByOrderByNomeAsc();
         if (produtosEncontrados == null) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, msgNotFound);
@@ -89,7 +97,7 @@ public class ProdutoService {
         return listProdutoDto(produtosEncontrados);
 	}
 	
-	 public List<ProdutoDto> listarNomeDecrescente() {  //arrumar retornar lista Produtodto
+	 public List<ProdutoDto> listarNomeDecrescente() { 
 		 List<Produto> produtosEncontrados = produtoRepository.findAllByOrderByNomeDesc(); 
          if (produtosEncontrados == null) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, msgNotFound);
