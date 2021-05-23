@@ -15,6 +15,6 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long>{
 	List<Produto> findAllByOrderByNomeAsc();
 	List<Produto> findAllByOrderByNomeDesc();
 	List<Produto> findByCategoriaContainingIgnoreCase(String categoria);
-    //List<Produto> findByAtributoProdutoContainingIgnoreCase(String atributoProduto, String valor);
-
+	List<Produto> findByTamanhoContainingIgnoreCase(String nome);
+	//find isNOVO bolean
 }

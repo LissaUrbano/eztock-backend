@@ -15,8 +15,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @Entity
 public class ProdutoEstoque implements Serializable{
 
-    private static final long serialVersionUID = 1L;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -93,5 +91,4 @@ public class ProdutoEstoque implements Serializable{
             return false;
         return true;
     }
-    
 }

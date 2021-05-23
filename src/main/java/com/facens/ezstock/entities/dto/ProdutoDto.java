@@ -1,8 +1,5 @@
 package com.facens.ezstock.entities.dto;
 
-import java.util.List;
-
-import com.facens.ezstock.entities.AtributoProduto;
 import com.facens.ezstock.entities.Produto;
 
 public class ProdutoDto {
@@ -12,19 +9,20 @@ public class ProdutoDto {
     private String codigoProduto;
     private String categoria;
     private Double preco;
-    private List<AtributoProduto> atributoProduto;
+    private String tamanho;
+    private Boolean ehUsado;
 
     public ProdutoDto() {
     }
 
-    public ProdutoDto(Long id, String nome, String codigoProduto, String categoria, Double preco,
-            List<AtributoProduto> atributoProduto) {
+    public ProdutoDto(Long id, String nome, String codigoProduto, String categoria, Double preco, String tamanho, Boolean ehUsado) {
         this.id = id;
         this.nome = nome;
         this.codigoProduto = codigoProduto;
         this.categoria = categoria;
         this.preco = preco;
-        this.atributoProduto = atributoProduto;
+        this.tamanho = tamanho;
+        this.ehUsado = ehUsado;
     }
 
     public ProdutoDto(Produto produto) {
@@ -33,7 +31,8 @@ public class ProdutoDto {
         setCodigoProduto(produto.getCodigoProduto());
         setCategoria(produto.getCategoria());
         setPreco(produto.getPreco());
-        setAtributoProduto(produto.getAtributoProduto());
+        setTamanho(produto.getTamanho());
+        setEhUsado(produto.getEhUsado());
     }
 
     public Long getId() {
@@ -76,12 +75,19 @@ public class ProdutoDto {
         this.preco = preco;
     }
 
-    public List<AtributoProduto> getAtributoProduto() {
-        return atributoProduto;
+    public String getTamanho() {
+        return tamanho;
     }
 
-    public void setAtributoProduto(List<AtributoProduto> atributoProduto) {
-        this.atributoProduto = atributoProduto;
+    public void setTamanho(String tamanho) {
+        this.tamanho = tamanho;
     }
-    
+
+    public Boolean getEhUsado() {
+        return ehUsado;
+    }
+
+    public void setEhUsado(Boolean ehUsado) {
+        this.ehUsado = ehUsado;
+    }
 }

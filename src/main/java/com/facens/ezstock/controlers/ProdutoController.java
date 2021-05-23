@@ -25,6 +25,7 @@ public class ProdutoController {
     @Autowired
 	private ProdutoService produtoService;
 
+    //cria produto 
     @PostMapping
 	public ResponseEntity<ProdutoDto> criar(@RequestBody ProdutoDto produtoDto){
 		ProdutoDto dto = produtoService.criar(produtoDto); 
@@ -32,12 +33,19 @@ public class ProdutoController {
 		return ResponseEntity.created(uri).body(dto);
 	}
 	
+    //atualiza dados do projeto 
 	@PutMapping("/{id}")
 	public ResponseEntity<ProdutoDto> atualizar(@PathVariable Long id, @RequestBody ProdutoDto produtoDto) {
 		ProdutoDto dto = produtoService.atualizar(id, produtoDto);
 		return ResponseEntity.ok().body(dto);
 	}
 	
+
+
+
+
+    
+    //deleta produto
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> remover(@PathVariable Long id) { 
 		produtoService.remover(id);
@@ -93,12 +101,4 @@ public class ProdutoController {
         return ResponseEntity.ok().body(listDto);
     }
 
-    /*
-    //BUSCA PRODUTOS POR ATRIBUTO
-    @GetMapping("/atributo/{nome}={valor}")
-    public ResponseEntity<List<ProdutoDto>> buscarPorAtributoValor(@PathVariable String nome, String valor){
-        List<ProdutoDto> listDto = produtoService.buscarPorAtributoValor(nome, valor);
-        return ResponseEntity.ok().body(listDto);
-    }
-    */
 }

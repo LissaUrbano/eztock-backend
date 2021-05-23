@@ -1,21 +1,16 @@
 package com.facens.ezstock.entities;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 
 import com.facens.ezstock.entities.dto.ProdutoDto;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Produto implements Serializable{
-
-    private static final long serialVersionUID = 1L;
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,10 +19,8 @@ public class Produto implements Serializable{
     private String codigoProduto;
     private String categoria;
     private Double preco;
-
-    @JsonIgnore
-	@ManyToMany
-    private List<AtributoProduto> atributoProduto;//list chave estrangeira
+    private String tamanho;
+    private Boolean ehUsado;
 
     public Produto() {
     }
@@ -38,7 +31,8 @@ public class Produto implements Serializable{
         this.codigoProduto = produtoDto.getCodigoProduto();
         this.categoria = produtoDto.getCategoria();
         this.preco = produtoDto.getPreco();
-        this.atributoProduto = produtoDto.getAtributoProduto();
+        this.tamanho = produtoDto.getTamanho();
+        this.ehUsado = produtoDto.getEhUsado();
     }
 
     public Long getId() {
@@ -81,12 +75,20 @@ public class Produto implements Serializable{
         this.preco = preco;
     }
 
-    public List<AtributoProduto> getAtributoProduto() {
-        return atributoProduto;
+    public String getTamanho() {
+        return tamanho;
     }
 
-    public void setAtributoProduto(List<AtributoProduto> atributoProduto) {
-        this.atributoProduto = atributoProduto;
+    public void setTamanho(String tamanho) {
+        this.tamanho = tamanho;
+    }
+
+    public Boolean getEhUsado() {
+        return ehUsado;
+    }
+
+    public void setEhUsado(Boolean ehUsado) {
+        this.ehUsado = ehUsado;
     }
 
     @Override
@@ -113,5 +115,4 @@ public class Produto implements Serializable{
             return false;
         return true;
     }
-    
 }
