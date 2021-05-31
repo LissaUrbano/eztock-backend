@@ -33,14 +33,6 @@ public class ProdutoInsertEstoqueDTO {
         this.ehUsado = ehUsado;
     }
 
-    /*
-    public ProdutoInsertEstoqueDTO(ProdutoEstoque produtoEstoque) {
-        setId(produtoEstoque.getId());
-        setIdProduto(produtoEstoque.getIdProduto());
-        setQuantidade(produtoEstoque.getQuantidade());
-        setDataEstoque(produtoEstoque.getDataEstoque());
-    }*/
-
     public Long getId() {
         return id;
     }

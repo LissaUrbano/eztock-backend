@@ -24,7 +24,7 @@ public class ProdutoVendaDTO {
 
     public ProdutoVendaDTO(ProdutoVenda produtoVenda) {
         setId(produtoVenda.getId());
-        setIdProduto(produtoVenda.getIdProduto());
+        setIdProduto(produtoVenda.getProduto());
         setQuantidade(produtoVenda.getQuantidade());
         setDataVenda(produtoVenda.getDataVenda());
     }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.facens.ezstock.entities.dto.ProdutoEstoqueDTO;
 import com.facens.ezstock.entities.dto.ProdutoInsertEstoqueDTO;
+import com.facens.ezstock.entities.dto.ProdutoUpdateEstoqueDTO;
 import com.facens.ezstock.services.ProdutoEstoqueService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,6 @@ public class ProdutoEstoqueController {
     @Autowired
     private ProdutoEstoqueService produtoEstoqueService;
 
-
 	//instancia um produto e adiciona ao estoque
 	@PostMapping
 	public ResponseEntity<ProdutoEstoqueDTO> criar(@RequestBody ProdutoInsertEstoqueDTO produtoInsertEstoqueDTO){
@@ -35,31 +35,28 @@ public class ProdutoEstoqueController {
 		return ResponseEntity.created(uri).body(dto);
 	}
 
-	@PutMapping("/{id}")
-	public ResponseEntity<ProdutoEstoqueDTO> atualizar(@PathVariable Long id, ProdutoEstoqueDTO produtoEstoqueDto) {
-		ProdutoEstoqueDTO dto = produtoEstoqueService.atualizar(id, produtoEstoqueDto);
+	@GetMapping
+	public ResponseEntity<List<ProdutoEstoqueDTO>> listar(){ 
+		List<ProdutoEstoqueDTO> listDto = produtoEstoqueService.buscarTodos();
+		return ResponseEntity.ok().body(listDto);
+	}
+
+	//altera quantidade de produto em estoque
+	@PutMapping("{id}")
+	public ResponseEntity<ProdutoEstoqueDTO> atualizar(@PathVariable Long id, ProdutoUpdateEstoqueDTO produtoUpdateDto) {
+		ProdutoEstoqueDTO dto = produtoEstoqueService.atualizar(id, produtoUpdateDto);
 		return ResponseEntity.ok().body(dto);
 	}
 
-	@DeleteMapping("/{id}")
+	@DeleteMapping("{id}")
 	public ResponseEntity<Void> removerProdutodoEstoque(@PathVariable Long id) { 
 		produtoEstoqueService.remover(id);
         return ResponseEntity.noContent().build();
 	}
 
-    //BUSCA TODOS PRODUTOS DO ESTOQUE
-	@GetMapping
-	public ResponseEntity<List<ProdutoEstoqueDTO>> listar(){ 
-        List<ProdutoEstoqueDTO> listDto = produtoEstoqueService.buscarTodos();
-        return ResponseEntity.ok().body(listDto);
-	}
-
-	//BUSCA POR ID
 	@GetMapping("{id}")
 	public ResponseEntity<ProdutoEstoqueDTO> buscarPorId(@PathVariable Long id){
 		ProdutoEstoqueDTO dto = produtoEstoqueService.buscarPorId(id);
 		return ResponseEntity.ok().body(dto);
 	}
-
-
 }

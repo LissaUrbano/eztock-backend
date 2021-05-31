@@ -11,21 +11,21 @@ public class ProdutoEstoqueDTO {
     private Integer quantidade;
     private LocalDate dataEstoque;
 
-    private Produto idProduto;
+    private Produto produto;
 
     public ProdutoEstoqueDTO() {
     }
 
-    public ProdutoEstoqueDTO(Integer quantidade, Produto idProduto) {
+    public ProdutoEstoqueDTO(Integer quantidade, Produto produto) {
         this.quantidade = quantidade;
-        this.idProduto = idProduto;
+        this.produto = produto;
     }
 
     public ProdutoEstoqueDTO(ProdutoEstoque produtoEstoque) {
         setId(produtoEstoque.getId());
         setQuantidade(produtoEstoque.getQuantidade());
         setDataEstoque(produtoEstoque.getDataEstoque());
-        setIdProduto(produtoEstoque.getIdProduto());
+        setProduto(produtoEstoque.getProduto());
     }
 
     public Long getId() {
@@ -52,11 +52,11 @@ public class ProdutoEstoqueDTO {
         this.dataEstoque = dataEstoque;
     }
 
-    public Produto getIdProduto() {
-        return idProduto;
+    public Produto getProduto() {
+        return produto;
     }
 
-    public void setIdProduto(Produto idProduto) {
-        this.idProduto = idProduto;
+    public void setProduto(Produto produto) {
+        this.produto = produto;
     }
 }

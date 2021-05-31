@@ -11,6 +11,7 @@ import com.facens.ezstock.entities.ProdutoEstoque;
 import com.facens.ezstock.entities.dto.ProdutoDto;
 import com.facens.ezstock.entities.dto.ProdutoEstoqueDTO;
 import com.facens.ezstock.entities.dto.ProdutoInsertEstoqueDTO;
+import com.facens.ezstock.entities.dto.ProdutoUpdateEstoqueDTO;
 import com.facens.ezstock.repositories.ProdutoEstoqueRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,11 +44,19 @@ public class ProdutoEstoqueService {
         return new ProdutoEstoqueDTO(produtoEstoqueRepository.save(new ProdutoEstoque(produtoEstoqueDTO)));
     }
 
-    public ProdutoEstoqueDTO atualizar(Long id, ProdutoEstoqueDTO produtoEstoqueDto) { //atualiza somente qtd
+    public List<ProdutoEstoqueDTO> buscarTodos() {
+		List<ProdutoEstoque> produtosEncontrados = produtoEstoqueRepository.findAll();
+        if (produtosEncontrados.isEmpty()) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, msgNotFound);
+		}
+        return listProdutoEstoqueDTO(produtosEncontrados);
+	}
+
+    public ProdutoEstoqueDTO atualizar(Long id, ProdutoUpdateEstoqueDTO produtoUpdateDto) { //atualiza somente qtd
         try {
             ProdutoEstoque produtoEstoque = produtoEstoqueRepository.getOne(id);
-            if(produtoEstoqueDto.getQuantidade() != null) {
-                produtoEstoque.setQuantidade(produtoEstoqueDto.getQuantidade());
+            if(produtoUpdateDto.getQuantidade() != null && produtoUpdateDto.getQuantidade() > 0) {
+                produtoEstoque.setQuantidade(produtoUpdateDto.getQuantidade());
             }
             return new ProdutoEstoqueDTO(produtoEstoqueRepository.save(produtoEstoque));
         } catch (EntityNotFoundException e) {
@@ -62,14 +71,6 @@ public class ProdutoEstoqueService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, msgNotFound);
         }
     }
-
-    public List<ProdutoEstoqueDTO> buscarTodos() {
-		List<ProdutoEstoque> produtosEncontrados = produtoEstoqueRepository.findAll();
-        if (produtosEncontrados.isEmpty()) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, msgNotFound);
-		}
-        return listProdutoEstoqueDTO(produtosEncontrados);
-	}
 
     public ProdutoEstoqueDTO buscarPorId(Long id) {
         Optional<ProdutoEstoque> op = produtoEstoqueRepository.findById(id);

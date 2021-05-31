@@ -32,6 +32,7 @@ public class ProdutoEstoque implements Serializable{
     public ProdutoEstoque(ProdutoEstoqueDTO produtoEstoqueDto) {
         setQuantidade(produtoEstoqueDto.getQuantidade());
         setDataEstoque(LocalDate.now());
+        setProduto(produtoEstoqueDto.getProduto());
     }
 
     public Long getId() {
