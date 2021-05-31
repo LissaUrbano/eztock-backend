@@ -1,10 +1,13 @@
 package com.facens.ezstock.entities.dto;
 
-import com.facens.ezstock.entities.Produto;
+import java.time.LocalDate;
 
-public class ProdutoDto {
+public class ProdutoInsertEstoqueDTO {
 
     private Long id;
+    private Integer quantidade;
+    private LocalDate dataEstoque;
+
     private String nome;
     private String codigoProduto;
     private String categoria;
@@ -12,20 +15,16 @@ public class ProdutoDto {
     private String tamanho;
     private Boolean ehUsado;
 
-    public ProdutoDto() {
+
+    public ProdutoInsertEstoqueDTO() {
     }
 
-    public ProdutoDto(String nome, String codigoProduto, String categoria, Double preco, String tamanho, Boolean ehUsado) {
-        this.nome = nome;
-        this.codigoProduto = codigoProduto;
-        this.categoria = categoria;
-        this.preco = preco;
-        this.tamanho = tamanho;
-        this.ehUsado = ehUsado;
-    }
-
-    public ProdutoDto(Long id, String nome, String codigoProduto, String categoria, Double preco, String tamanho, Boolean ehUsado) {
+    public ProdutoInsertEstoqueDTO(Long id, Integer quantidade, LocalDate dataEstoque,     
+                                    String nome, String codigoProduto, String categoria, Double preco, String tamanho, Boolean ehUsado) {
         this.id = id;
+        this.quantidade = quantidade;
+        this.dataEstoque = dataEstoque;
+
         this.nome = nome;
         this.codigoProduto = codigoProduto;
         this.categoria = categoria;
@@ -34,15 +33,13 @@ public class ProdutoDto {
         this.ehUsado = ehUsado;
     }
 
-    public ProdutoDto(Produto produto) {
-        setId(produto.getId());
-        setNome(produto.getNome());
-        setCodigoProduto(produto.getCodigoProduto());
-        setCategoria(produto.getCategoria());
-        setPreco(produto.getPreco());
-        setTamanho(produto.getTamanho());
-        setEhUsado(produto.getEhUsado());
-    }
+    /*
+    public ProdutoInsertEstoqueDTO(ProdutoEstoque produtoEstoque) {
+        setId(produtoEstoque.getId());
+        setIdProduto(produtoEstoque.getIdProduto());
+        setQuantidade(produtoEstoque.getQuantidade());
+        setDataEstoque(produtoEstoque.getDataEstoque());
+    }*/
 
     public Long getId() {
         return id;
@@ -50,6 +47,22 @@ public class ProdutoDto {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Integer getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(Integer quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    public LocalDate getDataEstoque() {
+        return dataEstoque;
+    }
+
+    public void setDataEstoque(LocalDate dataEstoque) {
+        this.dataEstoque = dataEstoque;
     }
 
     public String getNome() {

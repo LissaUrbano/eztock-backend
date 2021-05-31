@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.List;
 
 import com.facens.ezstock.entities.dto.ProdutoEstoqueDTO;
+import com.facens.ezstock.entities.dto.ProdutoInsertEstoqueDTO;
 import com.facens.ezstock.services.ProdutoEstoqueService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +26,11 @@ public class ProdutoEstoqueController {
     @Autowired
     private ProdutoEstoqueService produtoEstoqueService;
 
+
+	//instancia um produto e adiciona ao estoque
 	@PostMapping
-	public ResponseEntity<ProdutoEstoqueDTO> criar(@RequestBody ProdutoEstoqueDTO produtoEstoqueDto){
-		ProdutoEstoqueDTO dto = produtoEstoqueService.criar(produtoEstoqueDto); 
+	public ResponseEntity<ProdutoEstoqueDTO> criar(@RequestBody ProdutoInsertEstoqueDTO produtoInsertEstoqueDTO){
+		ProdutoEstoqueDTO dto = produtoEstoqueService.inserir(produtoInsertEstoqueDTO); 
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
 		return ResponseEntity.created(uri).body(dto);
 	}

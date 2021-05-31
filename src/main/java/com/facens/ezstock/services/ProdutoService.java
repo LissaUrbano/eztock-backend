@@ -25,9 +25,8 @@ public class ProdutoService {
 
     private String msgNotFound = "Produto não encontrado";
     
-    public ProdutoDto criar(ProdutoDto produtoDto) {
-        Produto produto = new Produto(produtoDto);
-        return new ProdutoDto(produtoRepository.save(produto));
+    public Produto criar(ProdutoDto produtoDto) {
+        return produtoRepository.save(new Produto(produtoDto));
     }
 
     public ProdutoDto atualizar(Long id, ProdutoDto produtoDto) { 

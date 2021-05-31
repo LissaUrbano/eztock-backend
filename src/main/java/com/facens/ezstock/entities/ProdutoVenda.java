@@ -20,7 +20,7 @@ public class ProdutoVenda implements Serializable {
     private Long id;
 
     @ManyToOne
-    private Produto idProduto;//chave estrangeira
+    private Produto produto;//chave estrangeira
     private Integer quantidade;
 
     @JsonFormat(pattern = "dd/MM/yyyy")
@@ -30,7 +30,7 @@ public class ProdutoVenda implements Serializable {
     }
 
     public ProdutoVenda(ProdutoVendaDTO produtoVendaDto) {
-        setIdProduto(produtoVendaDto.getIdProduto());
+        setProduto(produtoVendaDto.getIdProduto());
         setQuantidade(produtoVendaDto.getQuantidade());
         setDataVenda(LocalDate.now());
     }
@@ -43,12 +43,12 @@ public class ProdutoVenda implements Serializable {
         this.id = id;
     }
 
-    public Produto getIdProduto() {
-        return idProduto;
+    public Produto getProduto() {
+        return produto;
     }
 
-    public void setIdProduto(Produto idProduto) {
-        this.idProduto = idProduto;
+    public void setProduto(Produto produto) {
+        this.produto = produto;
     }
 
     public Integer getQuantidade() {

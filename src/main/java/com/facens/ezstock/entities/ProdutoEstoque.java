@@ -18,19 +18,18 @@ public class ProdutoEstoque implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @ManyToOne
-    private Produto idProduto;//chave estrangeira
     private Integer quantidade;
     
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataEstoque; 
 
+    @ManyToOne
+    private Produto produto;//chave estrangeira
+
     public ProdutoEstoque() {
     }
 
     public ProdutoEstoque(ProdutoEstoqueDTO produtoEstoqueDto) {
-        setIdProduto(produtoEstoqueDto.getIdProduto());
         setQuantidade(produtoEstoqueDto.getQuantidade());
         setDataEstoque(LocalDate.now());
     }
@@ -43,12 +42,12 @@ public class ProdutoEstoque implements Serializable{
         this.id = id;
     }
 
-    public Produto getIdProduto() {
-        return idProduto;
+    public Produto getProduto() {
+        return produto;
     }
 
-    public void setIdProduto(Produto idProduto) {
-        this.idProduto = idProduto;
+    public void setProduto(Produto produto) {
+        this.produto = produto;
     }
 
     public Integer getQuantidade() {

@@ -6,8 +6,11 @@ import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
 
+import com.facens.ezstock.entities.Produto;
 import com.facens.ezstock.entities.ProdutoEstoque;
+import com.facens.ezstock.entities.dto.ProdutoDto;
 import com.facens.ezstock.entities.dto.ProdutoEstoqueDTO;
+import com.facens.ezstock.entities.dto.ProdutoInsertEstoqueDTO;
 import com.facens.ezstock.repositories.ProdutoEstoqueRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +25,22 @@ public class ProdutoEstoqueService {
     @Autowired
     private ProdutoEstoqueRepository produtoEstoqueRepository;
 
+    @Autowired
+    private ProdutoService produtoService;
+
     private String msgNotFound = "Produto não encontrado em estoque";
 
-    public ProdutoEstoqueDTO criar(ProdutoEstoqueDTO produtoEstoqueDto) {
-        ProdutoEstoque produtoEstoque = new ProdutoEstoque(produtoEstoqueDto);
-        return new ProdutoEstoqueDTO(produtoEstoqueRepository.save(produtoEstoque));
+    public ProdutoEstoqueDTO inserir(ProdutoInsertEstoqueDTO produtoInsertEstoqueDTO) {
+
+        ProdutoDto produtoDto = new ProdutoDto(produtoInsertEstoqueDTO.getNome(), produtoInsertEstoqueDTO.getCodigoProduto(), produtoInsertEstoqueDTO.getCategoria(), 
+                                                produtoInsertEstoqueDTO.getPreco(), produtoInsertEstoqueDTO.getTamanho(), produtoInsertEstoqueDTO.getEhUsado());
+
+        //instancia produto e salva no repositorio de produto                                        
+        Produto produtoCriado = produtoService.criar(produtoDto);
+        //instancia um ProdutoEstoqueDTO
+        ProdutoEstoqueDTO produtoEstoqueDTO = new ProdutoEstoqueDTO(produtoInsertEstoqueDTO.getQuantidade(), produtoCriado);
+        //instancia produtoEstoque e salva no repositorio de Estoque   
+        return new ProdutoEstoqueDTO(produtoEstoqueRepository.save(new ProdutoEstoque(produtoEstoqueDTO)));
     }
 
     public ProdutoEstoqueDTO atualizar(Long id, ProdutoEstoqueDTO produtoEstoqueDto) { //atualiza somente qtd
