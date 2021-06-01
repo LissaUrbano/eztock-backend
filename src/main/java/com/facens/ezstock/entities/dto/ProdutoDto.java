@@ -24,16 +24,6 @@ public class ProdutoDto {
         this.ehUsado = ehUsado;
     }
 
-    public ProdutoDto(Long id, String nome, String codigoProduto, String categoria, Double preco, String tamanho, Boolean ehUsado) {
-        this.id = id;
-        this.nome = nome;
-        this.codigoProduto = codigoProduto;
-        this.categoria = categoria;
-        this.preco = preco;
-        this.tamanho = tamanho;
-        this.ehUsado = ehUsado;
-    }
-
     public ProdutoDto(Produto produto) {
         setId(produto.getId());
         setNome(produto.getNome());

@@ -30,7 +30,7 @@ public class ProdutoVenda implements Serializable {
     }
 
     public ProdutoVenda(ProdutoVendaDTO produtoVendaDto) {
-        setProduto(produtoVendaDto.getIdProduto());
+        setProduto(produtoVendaDto.getProduto());
         setQuantidade(produtoVendaDto.getQuantidade());
         setDataVenda(LocalDate.now());
     }

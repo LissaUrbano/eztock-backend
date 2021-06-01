@@ -10,7 +10,6 @@ import com.facens.ezstock.entities.Produto;
 import com.facens.ezstock.entities.dto.ProdutoDto;
 import com.facens.ezstock.repositories.ProdutoRepository;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
@@ -26,9 +25,7 @@ public class ProdutoService {
     private String msgNotFound = "Produto não encontrado";
     
     public Produto criar(ProdutoDto produtoDto) {
-        Produto produto = new Produto(produtoDto);
-        Produto produtoSalvo = produtoRepository.save(produto);
-        return produtoSalvo;
+        return produtoRepository.save(new Produto(produtoDto));
     }
 
     public ProdutoDto atualizar(Long id, ProdutoDto produtoDto) { 
@@ -41,9 +38,16 @@ public class ProdutoService {
             if(produtoDto.getCodigoProduto() != null) {
                 produto.setCodigoProduto(produtoDto.getCodigoProduto());
             }
+            if (produtoDto.getPreco() != null) {
+                produto.setPreco(produtoDto.getPreco());
+            }
+            if (produtoDto.getCategoria() != null) {
+                produto.setCategoria(produtoDto.getCategoria()); 
+            }
+            if (produtoDto.getEhUsado() != null){
+                produto.setTamanho(produtoDto.getTamanho());
+            }
 
-            BeanUtils.copyProperties(produtoDto, produto, "id");
-            
             produto = produtoRepository.save(produto);
             return new ProdutoDto(produto);
 
@@ -89,22 +93,6 @@ public class ProdutoService {
 		}
         return listProdutoDto(produtosEncontrados);
 	}
-	
-	public List<ProdutoDto> listarNomeCrescente() {
-		List<Produto> produtosEncontrados = produtoRepository.findAllByOrderByNomeAsc();
-        if (produtosEncontrados == null) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, msgNotFound);
-		}
-        return listProdutoDto(produtosEncontrados);
-	}
-	
-	 public List<ProdutoDto> listarNomeDecrescente() { 
-		 List<Produto> produtosEncontrados = produtoRepository.findAllByOrderByNomeDesc(); 
-         if (produtosEncontrados == null) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, msgNotFound);
-		}
-        return listProdutoDto(produtosEncontrados);
-    }
 	 
     public List<ProdutoDto> buscarPorCategoria(String categoria) {
         List<Produto> produtosEncontrados = produtoRepository.findByCategoriaContainingIgnoreCase(categoria); 
@@ -113,16 +101,6 @@ public class ProdutoService {
 		}
         return listProdutoDto(produtosEncontrados);
     }
-
-    /*
-	public List<ProdutoDto> buscarPorAtributoValor(String atributoProduto, String valor) {
-        List<Produto> produtosEncontrados = produtoRepository.findByAtributoProdutoContainingIgnoreCase(atributoProduto, valor); 
-        if (produtosEncontrados == null) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, msgNotFound);
-		}
-        return listProdutoDto(produtosEncontrados);
-	}
-    */
 
     private List<ProdutoDto> listProdutoDto(List<Produto> produtos){
         List<ProdutoDto> listProdutoDto = new ArrayList<>();

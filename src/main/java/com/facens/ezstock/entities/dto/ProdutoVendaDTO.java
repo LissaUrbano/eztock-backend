@@ -8,23 +8,22 @@ import com.facens.ezstock.entities.ProdutoVenda;
 public class ProdutoVendaDTO {
 
     private Long id;
-    private Produto idProduto;
     private Integer quantidade;
     private LocalDate dataVenda;
+
+    private Produto produto;
 
     public ProdutoVendaDTO() {
     }
 
-    public ProdutoVendaDTO(Long id, Produto idProduto, Integer quantidade, LocalDate dataVenda) {
-        this.id = id;
-        this.idProduto = idProduto;
+    public ProdutoVendaDTO(Integer quantidade, Produto produto) {
         this.quantidade = quantidade;
-        this.dataVenda = dataVenda;
+        this.produto = produto;
     }
 
     public ProdutoVendaDTO(ProdutoVenda produtoVenda) {
         setId(produtoVenda.getId());
-        setIdProduto(produtoVenda.getProduto());
+        setProduto(produtoVenda.getProduto());
         setQuantidade(produtoVenda.getQuantidade());
         setDataVenda(produtoVenda.getDataVenda());
     }
@@ -37,12 +36,12 @@ public class ProdutoVendaDTO {
         this.id = id;
     }
 
-    public Produto getIdProduto() {
-        return idProduto;
+    public Produto getProduto() {
+        return produto;
     }
 
-    public void setIdProduto(Produto idProduto) {
-        this.idProduto = idProduto;
+    public void setProduto(Produto produto) {
+        this.produto = produto;
     }
 
     public Integer getQuantidade() {

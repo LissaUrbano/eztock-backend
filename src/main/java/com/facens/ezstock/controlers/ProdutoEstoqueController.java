@@ -43,7 +43,7 @@ public class ProdutoEstoqueController {
 
 	//altera quantidade de produto em estoque
 	@PutMapping("{id}")
-	public ResponseEntity<ProdutoEstoqueDTO> atualizar(@PathVariable Long id, ProdutoUpdateEstoqueDTO produtoUpdateDto) {
+	public ResponseEntity<ProdutoEstoqueDTO> atualizar(@PathVariable Long id, @RequestBody ProdutoUpdateEstoqueDTO produtoUpdateDto) {
 		ProdutoEstoqueDTO dto = produtoEstoqueService.atualizar(id, produtoUpdateDto);
 		return ResponseEntity.ok().body(dto);
 	}
