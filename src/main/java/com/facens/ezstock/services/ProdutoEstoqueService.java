@@ -34,7 +34,7 @@ public class ProdutoEstoqueService {
     public ProdutoEstoqueDTO inserir(ProdutoInsertEstoqueDTO produtoInsertEstoqueDTO) {
 
         ProdutoDto produtoDto = new ProdutoDto(produtoInsertEstoqueDTO.getNome(), produtoInsertEstoqueDTO.getCodigoProduto(), produtoInsertEstoqueDTO.getCategoria(), 
-                                                produtoInsertEstoqueDTO.getPreco(), produtoInsertEstoqueDTO.getTamanho(), produtoInsertEstoqueDTO.getEhUsado());
+                                                produtoInsertEstoqueDTO.getPreco(), produtoInsertEstoqueDTO.getTamanho(), produtoInsertEstoqueDTO.getEhUsado(), produtoInsertEstoqueDTO.getImagem());
 
         //instancia produto e salva no repositorio de produto                                        
         Produto produtoCriado = produtoService.criar(produtoDto);

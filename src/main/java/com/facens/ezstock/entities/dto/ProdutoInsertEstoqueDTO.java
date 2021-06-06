@@ -14,13 +14,13 @@ public class ProdutoInsertEstoqueDTO {
     private Double preco;
     private String tamanho;
     private Boolean ehUsado;
-
+    private String imagem;
 
     public ProdutoInsertEstoqueDTO() {
     }
 
     public ProdutoInsertEstoqueDTO(Long id, Integer quantidade, LocalDate dataEstoque,     
-                                    String nome, String codigoProduto, String categoria, Double preco, String tamanho, Boolean ehUsado) {
+                                    String nome, String codigoProduto, String categoria, Double preco, String tamanho, Boolean ehUsado, String imagem) {
         this.id = id;
         this.quantidade = quantidade;
         this.dataEstoque = dataEstoque;
@@ -31,14 +31,11 @@ public class ProdutoInsertEstoqueDTO {
         this.preco = preco;
         this.tamanho = tamanho;
         this.ehUsado = ehUsado;
+        this.imagem = imagem;
     }
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public Integer getQuantidade() {
@@ -103,5 +100,13 @@ public class ProdutoInsertEstoqueDTO {
 
     public void setEhUsado(Boolean ehUsado) {
         this.ehUsado = ehUsado;
+    }
+
+    public String getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
     }
 }

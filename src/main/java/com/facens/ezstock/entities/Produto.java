@@ -23,6 +23,7 @@ public class Produto implements Serializable{
     private Double preco;
     private String tamanho;
     private Boolean ehUsado;
+    private String imagem;
 
     public Produto() {
     }
@@ -35,14 +36,11 @@ public class Produto implements Serializable{
         this.preco = produtoDto.getPreco();
         this.tamanho = produtoDto.getTamanho();
         this.ehUsado = produtoDto.getEhUsado();
+        this.imagem = produtoDto.getImagem();
     }
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getNome() {
@@ -91,6 +89,14 @@ public class Produto implements Serializable{
 
     public void setEhUsado(Boolean ehUsado) {
         this.ehUsado = ehUsado;
+    }
+
+    public String getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
     }
 
     @Override

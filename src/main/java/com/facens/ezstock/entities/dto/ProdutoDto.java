@@ -11,17 +11,19 @@ public class ProdutoDto {
     private Double preco;
     private String tamanho;
     private Boolean ehUsado;
+    private String imagem;
 
     public ProdutoDto() {
     }
 
-    public ProdutoDto(String nome, String codigoProduto, String categoria, Double preco, String tamanho, Boolean ehUsado) {
+    public ProdutoDto(String nome, String codigoProduto, String categoria, Double preco, String tamanho, Boolean ehUsado, String imagem) {
         this.nome = nome;
         this.codigoProduto = codigoProduto;
         this.categoria = categoria;
         this.preco = preco;
         this.tamanho = tamanho;
         this.ehUsado = ehUsado;
+        this.imagem = imagem;
     }
 
     public ProdutoDto(Produto produto) {
@@ -32,6 +34,7 @@ public class ProdutoDto {
         setPreco(produto.getPreco());
         setTamanho(produto.getTamanho());
         setEhUsado(produto.getEhUsado());
+        setImagem(produto.getImagem());
     }
 
     public Long getId() {
@@ -88,5 +91,13 @@ public class ProdutoDto {
 
     public void setEhUsado(Boolean ehUsado) {
         this.ehUsado = ehUsado;
+    }
+
+    public String getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
     }
 }

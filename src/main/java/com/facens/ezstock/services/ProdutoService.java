@@ -7,8 +7,12 @@ import java.util.Optional;
 import javax.persistence.EntityNotFoundException;
 
 import com.facens.ezstock.entities.Produto;
+import com.facens.ezstock.entities.ProdutoEstoque;
+import com.facens.ezstock.entities.ProdutoVenda;
 import com.facens.ezstock.entities.dto.ProdutoDto;
+import com.facens.ezstock.repositories.ProdutoEstoqueRepository;
 import com.facens.ezstock.repositories.ProdutoRepository;
+import com.facens.ezstock.repositories.ProdutoVendaRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -21,6 +25,12 @@ public class ProdutoService {
     
     @Autowired
     private ProdutoRepository produtoRepository;
+
+    @Autowired
+    private ProdutoEstoqueRepository produtoEstoqueRepository;
+
+    @Autowired
+    private ProdutoVendaRepository produtoVendaRepository;
 
     private String msgNotFound = "Produto não encontrado";
     
@@ -57,6 +67,23 @@ public class ProdutoService {
     }
 
     public void remover(Long id) {
+
+        Produto produto = produtoRepository.getOne(id);
+        List<ProdutoEstoque> produtosEstoque = produtoEstoqueRepository.findAll();
+        List<ProdutoVenda> produtosVenda = produtoVendaRepository.findAll();
+
+        for (ProdutoEstoque produtoEstoque : produtosEstoque) {
+            if ((produtoEstoque.getProduto()).equals(produto)) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "produto não pode ser excluído");
+            }  
+        }
+
+        for (ProdutoVenda produtoVenda : produtosVenda) {
+            if ((produtoVenda.getProduto()).equals(produto)) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "produto não pode ser excluído");
+            }
+        }
+
         try {
             produtoRepository.deleteById(id);
         } catch (EmptyResultDataAccessException e) {
