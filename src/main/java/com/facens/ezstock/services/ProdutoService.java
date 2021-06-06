@@ -70,24 +70,23 @@ public class ProdutoService {
     }
 
     public void remover(Long id) {
-
-        Produto produto = produtoRepository.getOne(id);
-        List<ProdutoEstoque> produtosEstoque = produtoEstoqueRepository.findAll();
-        List<ProdutoVenda> produtosVenda = produtoVendaRepository.findAll();
-
-        for (ProdutoEstoque produtoEstoque : produtosEstoque) {
-            if ((produtoEstoque.getProduto()).equals(produto)) {
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "produto não pode ser excluído");
-            }  
-        }
-
-        for (ProdutoVenda produtoVenda : produtosVenda) {
-            if ((produtoVenda.getProduto()).equals(produto)) {
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "produto não pode ser excluído");
-            }
-        }
-
         try {
+            Produto produto = produtoRepository.getOne(id);
+            List<ProdutoEstoque> produtosEstoque = produtoEstoqueRepository.findAll();
+            List<ProdutoVenda> produtosVenda = produtoVendaRepository.findAll();
+    
+            for (ProdutoEstoque produtoEstoque : produtosEstoque) {
+                if ((produtoEstoque.getProduto()).equals(produto)) {
+                    throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "produto não pode ser excluído");
+                }  
+            }
+    
+            for (ProdutoVenda produtoVenda : produtosVenda) {
+                if ((produtoVenda.getProduto()).equals(produto)) {
+                    throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "produto não pode ser excluído");
+                }
+            }
+
             produtoRepository.deleteById(id);
         } catch (EmptyResultDataAccessException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, msgNotFound);
