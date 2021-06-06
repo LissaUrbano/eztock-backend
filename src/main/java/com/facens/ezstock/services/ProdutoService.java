@@ -57,6 +57,9 @@ public class ProdutoService {
             if (produtoDto.getEhUsado() != null){
                 produto.setTamanho(produtoDto.getTamanho());
             }
+            if (produtoDto.getImagem() != null){
+                produto.setImagem(produtoDto.getImagem());
+            }
 
             produto = produtoRepository.save(produto);
             return new ProdutoDto(produto);

@@ -27,7 +27,7 @@ public class ProdutoVendaService {
     @Autowired
     private ProdutoEstoqueRepository produtoEstoqueRepository;
 
-    private String msgNotFound = "Produto não encontrado em estoque";
+    private String msgNotFound = "Produto não encontrado em venda";
 
     public ProdutoVendaDTO inserir(Long idEstoque, Integer qtd) {
                                     
