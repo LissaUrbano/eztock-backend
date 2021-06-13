@@ -1,5 +1,8 @@
 package com.facens.ezstock.entities.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.facens.ezstock.entities.Produto;
 
 public class ProdutoDto {
@@ -11,19 +14,19 @@ public class ProdutoDto {
     private Double preco;
     private String tamanho;
     private Boolean ehUsado;
-    private String imagem;
+    private List<String> imagens = new ArrayList<>();
 
     public ProdutoDto() {
     }
 
-    public ProdutoDto(String nome, String codigoProduto, String categoria, Double preco, String tamanho, Boolean ehUsado, String imagem) {
+    public ProdutoDto(String nome, String codigoProduto, String categoria, Double preco, String tamanho, Boolean ehUsado, List<String> imagens) {
         this.nome = nome;
         this.codigoProduto = codigoProduto;
         this.categoria = categoria;
         this.preco = preco;
         this.tamanho = tamanho;
         this.ehUsado = ehUsado;
-        this.imagem = imagem;
+        this.imagens = imagens;
     }
 
     public ProdutoDto(Produto produto) {
@@ -34,7 +37,7 @@ public class ProdutoDto {
         setPreco(produto.getPreco());
         setTamanho(produto.getTamanho());
         setEhUsado(produto.getEhUsado());
-        setImagem(produto.getImagem());
+        setImagens(produto.getImagens());
     }
 
     public Long getId() {
@@ -93,11 +96,12 @@ public class ProdutoDto {
         this.ehUsado = ehUsado;
     }
 
-    public String getImagem() {
-        return imagem;
+    public List<String> getImagens() {
+        return imagens;
     }
 
-    public void setImagem(String imagem) {
-        this.imagem = imagem;
+    public void setImagens(List<String> imagens) {
+        this.imagens = imagens;
     }
+ 
 }

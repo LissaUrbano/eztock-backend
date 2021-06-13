@@ -54,11 +54,8 @@ public class ProdutoService {
             if (produtoDto.getCategoria() != null) {
                 produto.setCategoria(produtoDto.getCategoria()); 
             }
-            if (produtoDto.getEhUsado() != null){
+            if (produtoDto.getEhUsado() != null) {
                 produto.setTamanho(produtoDto.getTamanho());
-            }
-            if (produtoDto.getImagem() != null){
-                produto.setImagem(produtoDto.getImagem());
             }
 
             produto = produtoRepository.save(produto);

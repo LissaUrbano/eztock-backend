@@ -1,7 +1,10 @@
 package com.facens.ezstock.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,7 +26,9 @@ public class Produto implements Serializable{
     private Double preco;
     private String tamanho;
     private Boolean ehUsado;
-    private String imagem;
+
+    @ElementCollection
+    private List<String> imagens = new ArrayList<>();
 
     public Produto() {
     }
@@ -36,7 +41,9 @@ public class Produto implements Serializable{
         this.preco = produtoDto.getPreco();
         this.tamanho = produtoDto.getTamanho();
         this.ehUsado = produtoDto.getEhUsado();
-        this.imagem = produtoDto.getImagem();
+        for (String imagem : produtoDto.getImagens()) {
+            this.imagens.add(imagem);
+        }
     }
 
     public Long getId() {
@@ -91,12 +98,12 @@ public class Produto implements Serializable{
         this.ehUsado = ehUsado;
     }
 
-    public String getImagem() {
-        return imagem;
+    public List<String> getImagens() {
+        return imagens;
     }
 
-    public void setImagem(String imagem) {
-        this.imagem = imagem;
+    public void setImagem(List<String> imagens) {
+        this.imagens = imagens;
     }
 
     @Override
